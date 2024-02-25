@@ -1,0 +1,12 @@
+select count(distinct organizations.organization_id_wh) as unique_merchants
+from looker_wh.organizations organizations
+where 1 = 1
+
+/* Test    */ and cast(coalesce(organizations.is_test,0) as bool) = false
+/* Korta   */ and cast(coalesce(organizations.organization_is_korta,0) as bool) = false
+/* Neat    */ and cast(coalesce(organizations.organization_is_neat,0) as bool) = false
+/* Moment  */ and coalesce(moment_entity_calc,'0') != 'Moment Holdings Limited'
+/* Valitor */ and cast(coalesce(organizations.is_valitor,false) as bool) = false
+/* Blocked */ and cast(coalesce(organizations.organization_is_blocked,false) as bool) = false
+
+/* Only Active */ and upper(organizations.organization_status) = 'ACT' 
