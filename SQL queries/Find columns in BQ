@@ -1,0 +1,16 @@
+select table_schema, 
+       table_name, 
+       column_name, 
+       ordinal_position,
+       concat(table_schema,".",table_name) as query
+from XXXXX.INFORMATION_SCHEMA.COLUMNS
+where column_name like '%name%'
+
+/*
+table_schema: 
+looker_wh
+rapyd_main
+rapyd_master
+valitor_main
+valitor_master
+*/
